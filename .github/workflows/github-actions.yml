@@ -25,11 +25,12 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y docker.io
-          sudo systemctl start docker
           sudo systemctl enable docker
+          sudo systemctl start docker
+          
 
       # Run a Docker image from Docker Hub
       - name: Run Docker Image
         run: |
-          sudo docker pull ${{ secrets.DOCKER_USER_NAME }}/ggt-rum-cypress:latest
-          sudo docker run --env-file $GITHUB_ENV ${{ secrets.DOCKER_USER_NAME }}/ggt-rum-cypress:latest
+          sudo docker pull ${{ secrets.DOCKER_USER_NAME }}/cypress_test1:latest
+          sudo docker run --env-file $GITHUB_ENV ${{ secrets.DOCKER_USER_NAME }}/cypress_test1:latest
