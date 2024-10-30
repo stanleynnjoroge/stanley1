@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  execute:
+  run-databricks-notebook:
     runs-on: ubuntu-latest
     steps:
       # Checkout the repository content to GitHub runner
@@ -17,20 +17,12 @@ jobs:
       - name: Set environment variables
         run: |
           echo "DATABRICKS_HOST=${{ secrets.DATABRICKS_HOST }}" >> $GITHUB_ENV
-          echo "DATABRICKS_HTTP_PATH=${{ secrets.DATABRICKS_HTTP_PATH }}" >> $GITHUB_ENV
           echo "DATABRICKS_TOKEN=${{ secrets.DATABRICKS_TOKEN }}" >> $GITHUB_ENV
-
-      # Install Docker
-      - name: Install Docker
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y docker.io
-          sudo systemctl enable docker
-          sudo systemctl start docker
-          
-
-      # Run a Docker image from Docker Hub
-      - name: Run Docker Image
-        run: |
-          sudo docker pull ${{ secrets.DOCKER_USER_NAME }}/cypress_test1:latest
-          sudo docker run --env-file $GITHUB_ENV ${{ secrets.DOCKER_USER_NAME }}/cypress_test1:latest
+      - name: Run Databricks Notebook
+        uses: databricks/run-notebook@v0
+        with:
+          databricks-host: ${{ secrets.DATABRICKS_HOST }}
+          databricks-token: ${{ secrets.DATABRICKS_TOKEN }}
+          notebook-path: "/home/workspace/Github-actions"
+          base-parameters: '{"image": "ngangastanley/cypress_test1:latest"}'
+    
