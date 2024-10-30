@@ -23,7 +23,7 @@ jobs:
         with:
           databricks-host: ${{ secrets.DATABRICKS_HOST }}
           databricks-token: ${{ secrets.DATABRICKS_TOKEN }}
-          notebook-path: "/Workspace/Users/stanley.nnjoroge@griffinglobaltech.com/Github-actions"
+          workspace-notebook-path: "/Workspace/Users/stanley.nnjoroge@griffinglobaltech.com/Github-actions"
           existing-cluster-id: 1028-104457-wbmjdii
           base-parameters: '{"image": "ngangastanley/cypress_test1:latest"}'
     
