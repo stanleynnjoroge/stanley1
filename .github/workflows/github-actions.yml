@@ -21,7 +21,7 @@ jobs:
       - name: Run Databricks Notebook
         uses: databricks/run-notebook@v0
         with:
-          databricks-host: ${{ secrets.DATABRICKS_HOST }}
+          databricks-host: ${{ secrets.DATABRICKS_HTTP_PATH}}
           databricks-token: ${{ secrets.DATABRICKS_TOKEN }}
           workspace-notebook-path: "/Workspace/Users/stanley.nnjoroge@griffinglobaltech.com/Github-actions"
           existing-cluster-id: 1028-104457-wbmjdii
