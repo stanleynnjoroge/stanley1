@@ -25,7 +25,7 @@ jobs:
       # - name: Start the app
       #   run: npm start
       - name: E2E on Chrome
-      - uses: cypress-io/github-action@v6
+        uses: cypress-io/github-action@v6
         with:
           config-file: cypress.config.js
           browser: chrome
