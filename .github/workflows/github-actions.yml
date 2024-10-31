@@ -33,6 +33,7 @@ jobs:
       - name: Run Cypress tests
         uses: cypress-io/github-action@v2
         with:
+          config-file: cypress.config.js
           browser: chrome  
         env:
           CYPRESS_BASE_URL: http://172.31.48.1:3000 
