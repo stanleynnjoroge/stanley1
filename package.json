@@ -17,7 +17,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "cypress run --config-file=cypress.config.js",
     "eject": "react-scripts eject",
     "cy:open": "cypress open --config-file=cypress.config.js",
     "cy:run": "cypress run --config-file=cypress.config.js"
