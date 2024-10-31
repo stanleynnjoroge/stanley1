@@ -24,7 +24,7 @@ jobs:
 
       - name: Start the app
         run: npm start
-      - name: Start the app
+      - name: Test
         run: npm run cypress:run
         
     
