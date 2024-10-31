@@ -24,7 +24,9 @@ jobs:
 
       - name: Start the app
         run: npm start
-      - name: Test
-        run: npm run cypress:run
+      - name: E2E on Chrome
+      - uses: cypress-io/github-action@v6
+        with:
+          browser: chrome
         
     
