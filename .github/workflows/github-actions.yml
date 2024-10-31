@@ -28,7 +28,7 @@ jobs:
           PORT: 3000  
 
       - name: Wait for the app to be ready
-        run: sleep 1000  
+        run: sleep 100
 
       - name: Run Cypress tests
         uses: cypress-io/github-action@v2
