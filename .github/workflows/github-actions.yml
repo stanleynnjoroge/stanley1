@@ -22,8 +22,8 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Start the app
-        run: npm start
+      # - name: Start the app
+      #   run: npm start
       - name: E2E on Chrome
       - uses: cypress-io/github-action@v6
         with:
