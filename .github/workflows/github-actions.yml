@@ -18,20 +18,11 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: '20'  
-
-      - name: Install dependencies
-        run: npm install
-
-      - name: Start the app
-        run: npm start &
-        env:
-          PORT: 3000
-      - name: Run Cypress tests
-        run : npm run cy:run
-        # uses: cypress-io/github-action@v2
-        # with:
-        #   config-file: cypress.config.js
-        #   browser: chrome 
-        env:
-          CYPRESS_BASE_URL: http://172.31.48.1:3000
+      - name: E2E on Chrome
+        uses: cypress-io/github-action@v6
+        with:
+          start: npm start
+          config-file: cypress.config.js
+          browser: edge
+        
     
