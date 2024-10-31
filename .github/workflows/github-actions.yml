@@ -23,6 +23,6 @@ jobs:
         with:
           start: npm start
           config-file: cypress.config.js
-          browser: edge
+          
         
     
