@@ -17,10 +17,10 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "cypress run --config-file=cypress.config.js",
     "eject": "react-scripts eject",
-    "cy:open": "cypress open",
-    "cy:run": "cypress run"
+    "cy:open": "cypress open --config-file=cypress.config.js",
+    "cy:run": "cypress run --config-file=cypress.config.js"
   },
   "eslintConfig": {
     "extends": [
@@ -41,6 +41,7 @@
     ]
   },
   "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "cypress": "^13.15.1"
   }
 }
