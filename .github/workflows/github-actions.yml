@@ -1,0 +1,37 @@
+name: Run Cypress Tests
+
+on:
+  schedule:
+    - cron: '0 * * * *'  # Runs the job every hour at the 0th minute
+  workflow_dispatch:
+
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out the code
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '20'  
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Start the app
+        run: npm start &
+        env:
+          PORT: 3000
+      - name: Run Cypress tests
+        run : npm run cy:run
+        # uses: cypress-io/github-action@v2
+        # with:
+        #   config-file: cypress.config.js
+        #   browser: chrome 
+        env:
+          CYPRESS_BASE_URL: http://172.31.48.1:3000
+    
