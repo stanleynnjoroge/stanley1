@@ -1,29 +1,39 @@
-name: Run Cypress Tests and Docker Image
+name: Run Cypress Tests
 
 on:
   schedule:
     - cron: '0 * * * *'  # Runs the job every hour at the 0th minute
   workflow_dispatch:
 
+
 jobs:
-  run-databricks-notebook:
+  test:
     runs-on: ubuntu-latest
+
     steps:
-      # Checkout the repository content to GitHub runner
-      - name: Checkout repo content
+      - name: Check out the code
         uses: actions/checkout@v2
-      
-      # Set environment variables from GitHub secrets
-      - name: Set environment variables
-        run: |
-          echo "DATABRICKS_HOST=${{ secrets.DATABRICKS_HOST }}" >> $GITHUB_ENV
-          echo "DATABRICKS_TOKEN=${{ secrets.DATABRICKS_TOKEN }}" >> $GITHUB_ENV
-      - name: Run Databricks Notebook
-        uses: databricks/run-notebook@v0
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
         with:
-          databricks-host: ${{ secrets.DATABRICKS_HTTP_PATH}}
-          databricks-token: ${{ secrets.DATABRICKS_TOKEN }}
-          workspace-notebook-path: "/Workspace/Users/stanley.nnjoroge@griffinglobaltech.com/Github-actions"
-          existing-cluster-id: 1028-104457-wbmjdii
-          base-parameters: '{"image": "ngangastanley/cypress_test1:latest"}'
+          node-version: '20'  
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Start the app
+        run: npm start &
+        env:
+          PORT: 3000  
+
+      - name: Wait for the app to be ready
+        run: sleep 1000  
+
+      - name: Run Cypress tests
+        uses: cypress-io/github-action@v2
+        with:
+          browser: chrome  
+        env:
+          CYPRESS_BASE_URL: http://172.31.48.1:3000 
     
