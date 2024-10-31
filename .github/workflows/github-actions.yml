@@ -23,8 +23,8 @@ jobs:
         run: npm install
 
       - name: Start the app
-        run: npm start 
-      - name: Run Cypress tests
-        run : npm run cy:run
+        run: npm start
+             sleep 20
+             npm run cy:run
         
     
