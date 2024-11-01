@@ -2,7 +2,7 @@ name: Run Cypress Tests
 
 on:
   schedule:
-    - cron: 06 * * * *  # Runs the job every hour at the 0th minute
+    - cron: 06 * * * *  
   workflow_dispatch:
 
 
